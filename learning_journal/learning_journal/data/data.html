@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html> -->
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -9,11 +9,11 @@
     <title>Learning Journal</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="blog.css" rel="stylesheet"> 
-    <link href="bootstrap.css" rel="stylesheet"> 
+    <link href="../static/blog.css" rel="stylesheet"> 
+    <link href="../static/bootstrap.css" rel="stylesheet"> 
 
     <!-- Custom styles for this template -->
-    <link href="style.css" rel="stylesheet">
+    <link href="../static/style.css" rel="stylesheet">
   </head>
 
   <body>
@@ -31,16 +31,17 @@
       <div class="blog-masthead">
         <div class="container">
           <nav class="nav">
-            <a class="nav-link active" id='home' href="index.html">Home</a>
-            <a class="nav-link" id="new-entry" href="#">New Journal Entry</a>
+            <a class="nav-link active" id='home' href="/">Home</a>
+            <a class="nav-link" id="new-entry" href="/journal/new_entry">New Journal Entry</a>
+            <a class="nav-link active" href="/journal/{id:\d+}/update">Edit</a>
+            <a class="nav-link" href="/journal/{id:\d+}">Details</a>
           </nav>
         </div>
       </div>
 
       <div class="blog-header">
         <div class="container">
-          <h1 class="blog-title">Learning Journal</h1>
-          <p class="lead blog-description">John's learning journal for 401.</p>
+          <h1 class="blog-title">Learning Journal Data</h1>
         </div>
       </div>
     </header>
@@ -49,28 +50,11 @@
 
       <div class="row">
 
-        <div class="col-sm-8 blog-main" id="main-content">
-          
-
-          <form action="">
-          <div>
-            <input type="text" id="title" name="title" placeholder="Title">
-          </div>
-          <div>
-            <textarea type="text" id="content" name="content">
-            </textarea>
-          </div>
-        </form>  
-          
-
-
-          <button class="btn btn-outline-primary" id="edit"><a href="#">Edit Entry</a></button>
-          <button class="btn btn-outline-primary" id="new-entry-button">New Entry</button>
-          <button id="submit" class="btn btn-outline-primary">Submit</button>
-          
-          
-
-        </div><!-- /.blog-main -->
+        <div class="data">
+          <h1>Learning Journal: Class 11</h1>
+          <date>October 30, 2017</date>
+          <p>Today I am learning pyramid! Like right now, as I type. I now have a better understanding of how pyramid takes a request from the routes module, uses the config module to connect that route with the function in the default.py view folder. This is thanks to my paired programming partner Adrienne, she explained it to me.</p>
+        </div>
 
       </div><!-- /.row -->
 
@@ -84,8 +68,8 @@
     </footer>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
-    <!-- <script src="./app.js"></script> -->
+    <script src="./app.js"></script> -->
   </body>
 </html>
