@@ -1,4 +1,4 @@
-<!-- <!doctype html> -->
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -9,11 +9,11 @@
     <title>Learning Journal</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="blog.css" rel="stylesheet"> 
-    <link href="bootstrap.css" rel="stylesheet"> 
+    <link href="../static/blog.css" rel="stylesheet"> 
+    <link href="../static/bootstrap.css" rel="stylesheet"> 
 
     <!-- Custom styles for this template -->
-    <link href="style.css" rel="stylesheet">
+    <link href="../static/style.css" rel="stylesheet">
   </head>
 
   <body>
@@ -31,8 +31,10 @@
       <div class="blog-masthead">
         <div class="container">
           <nav class="nav">
-            <a class="nav-link active" id='home' href="#">Home</a>
-            <a class="nav-link" id="new-entry" href="create.html">New Journal Entry</a>
+            <a class="nav-link active" id='home' href="/">Home</a>
+            <a class="nav-link" id="new-entry" href="/journal/new_entry">New Journal Entry</a>
+            <a class="nav-link active" href="/journal/{id:\d+}/update">Edit</a>
+            <a class="nav-link" href="/journal/{id:\d+}">Details</a>
           </nav>
         </div>
       </div>
@@ -50,36 +52,12 @@
       <div class="row">
 
         <div class="col-sm-8 blog-main" id="main-content">
-          <div class="blog">
-
-            <div class="blog-post">
-              <h2 class="blog-post-title">Sample blog post</h2>
-              <p class="blog-post-meta">January 1, 2014</p>
-              <p class="blog-content">blah blah blah</p>
-            </div><!-- /.blog-post -->
-            <div class="blog-post">
-              <h2 class="blog-post-title">Sample blog post 2</h2>
-              <p class="blog-post-meta">January 1, 2014</p>
-              <p class="blog-content">blah blah blah</p>
-            </div><!-- /.blog-post -->
-
-          </div>
-
-          <form action="">
-          <div>
-            <input type="text" id="title" name="title" placeholder="Title">
-          </div>
-          <div>
-            <textarea type="text" id="content" name="content">
-            </textarea>
-          </div>
-        </form>  
+        
           
 
 
           <button class="btn btn-outline-primary" id="edit"><a href="#">Edit Entry</a></button>
           <button class="btn btn-outline-primary" id="new-entry-button">New Entry</button>
-          <button id="submit" class="btn btn-outline-primary">Submit</button>
           
           
 
@@ -97,8 +75,8 @@
     </footer>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
-    <script src="./app.js"></script>
+<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script> -->
+    <!-- <script src="./app.js"></script> -->
   </body>
 </html>
