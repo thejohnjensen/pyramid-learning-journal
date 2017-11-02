@@ -1,0 +1,13 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+       {% for entry in journals %}
+        <div class="blog-post">
+            <h2><a href="{{ request.route_url('detail_view', id=entry.id) }}">{{ entry.title }}</a></h2>
+            <p>{{ entry.date }}</p>
+        </div>
+       {% endfor %}
+
+  <button class="btn btn-outline-primary" id="new-entry-button">New Entry</button>
+    
+{% endblock %}
