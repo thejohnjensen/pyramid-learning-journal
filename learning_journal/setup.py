@@ -17,6 +17,7 @@ requires = [
     'pyramid_tm',
     'SQLAlchemy',
     'transaction',
+    'psycopg2',
     'zope.sqlalchemy',
     'waitress',
 ]
@@ -55,7 +56,7 @@ setup(
             'main = learning_journal:main',
         ],
         'console_scripts': [
-            'initialize_learning_journal_db = learning_journal.scripts.initializedb:main',
+            'initialize_db = learning_journal.scripts.initializedb:main',
         ],
     },
 )
