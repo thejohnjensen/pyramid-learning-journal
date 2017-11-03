@@ -12,7 +12,8 @@ def list_entry(request):
     }
 
 
-@view_config(route_name='detail_view', renderer="learning_journal:templates/details.jinja2")
+@view_config(route_name='detail_view',
+             renderer="learning_journal:templates/details.jinja2")
 def detail_view(request):
     """Render the detail view of one journal entry."""
     journal_id = int(request.matchdict['id'])
@@ -24,8 +25,10 @@ def detail_view(request):
     }
 
 
-@view_config(route_name='new_entry', renderer="learning_journal:templates/create.jinja2")
+@view_config(route_name='new_entry',
+             renderer="learning_journal:templates/create.jinja2")
 def new_entry(request):
+    """Render the page for creating a new entry."""
     return {
         'title': 'Title'
     }

@@ -1,67 +1,48 @@
 """Test module."""
 from pyramid.testing import DummyRequest
+from pyramid.httpexceptions import HTTPNotFound
+import pytest
 
 
-def test_getting_html_list_view_data():
+@pytest.fixture
+def dummy_request():
+    """Create the dummy request fixture so we can reuse it."""
+    return DummyRequest()
+
+
+def test_getting_all_entry_data_in_list_view(dummy_request):
+    """Test that my list response returns all my data in journal_dict."""
+    from learning_journal.views.default import list_entry
+    from learning_journal.data.data import journal_dict
+    response = list_entry(dummy_request)
+    assert response['journals'] == journal_dict
+
+
+def test_getting_html_list_view_data(dummy_request):
     """Test that getting back expected dictionary with my journals."""
     from learning_journal.views.default import list_entry
-    req = DummyRequest()
-    response = list_entry(req)
+    response = list_entry(dummy_request)
     assert response['journals'][0]['id'] == 12
 
 
-def test_getting_html_detail_view_data():
-    """."""
+def test_getting_html_detail_view_data(dummy_request):
+    """Test that we get the correct data back for id."""
     from learning_journal.views.default import detail_view
-    req = DummyRequest()
-    response = detail_view(req)
-    id = 1
-    assert print(response)
+    dummy_request.matchdict['id'] = 12
+    response = detail_view(dummy_request)
+    assert 'Class 12' in response['entry']['title']
 
 
-# def test_getting_html_create_view_status_code():
-#     """."""
-#     from learning_journal.views.default import create_view
-#     req = DummyRequest()
-#     response = create_view(req)
-#     assert response.status_code == 200
+def test_getting_html_detail_view_data_not_found(dummy_request):
+    """Test that we get the correct data back for id."""
+    from learning_journal.views.default import detail_view
+    dummy_request.matchdict['id'] = 22
+    with pytest.raises(HTTPNotFound):
+        detail_view(dummy_request)
 
 
-# def test_getting_html_update_view_status_code():
-#     """."""
-#     from learning_journal.views.default import update_view
-#     req = DummyRequest()
-#     response = update_view(req)
-#     assert response.status_code == 200
-
-
-# def test_getting_html_list_view_contains_unique_text():
-#     """."""
-#     from learning_journal.views.default import list_view
-#     req = DummyRequest()
-#     response = list_view(req)
-#     assert '<h2 class="blog-post-title">Sample blog post</h2>' in response.ubody
-
-
-# def test_getting_html_detail_view_unique_text():
-#     """."""
-#     from learning_journal.views.default import detail_view
-#     req = DummyRequest()
-#     response = detail_view(req)
-#     assert '<h1>Learning Journal: Class 11</h1>' in response.ubody
-
-
-# def test_getting_html_create_view_unique_text():
-#     """."""
-#     from learning_journal.views.default import create_view
-#     req = DummyRequest()
-#     response = create_view(req)
-#     assert '<h1 class="blog-title">Create New Learning Journal Entry</h1>' in response.ubody
-
-
-# def test_getting_html_update_view_unique_text():
-#     """."""
-#     from learning_journal.views.default import update_view
-#     req = DummyRequest()
-#     response = update_view(req)
-#     assert '<h1 class="blog-title">Update Learning Journal</h1>' in response.ubody
+def test_create_new_entry_form_is_returned(dummy_request):
+    """Test that the create new form page renders."""
+    from learning_journal.views.default import new_entry
+    response = new_entry(dummy_request)
+    assert response['title'] == 'Title'
