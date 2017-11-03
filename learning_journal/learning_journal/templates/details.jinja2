@@ -1,0 +1,13 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+
+<div class="data">
+          <div class="blog-post">
+            <h2>{{ entry.title }}</h2>
+            <p>{{ entry.date }}</p>
+            <p>{{ entry.body }}</p>
+        </div>
+</div>
+
+{% endblock %}

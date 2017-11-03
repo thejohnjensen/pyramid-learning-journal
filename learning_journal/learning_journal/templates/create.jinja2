@@ -1,0 +1,16 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+
+<form action="">
+          <div>
+            <input type="text" id="title" name="title" placeholder="{{ title }}">
+          </div>
+          <div>
+            <textarea type="text" id="content" name="content">
+            </textarea>
+          </div>
+        </form>  
+<button id="submit" class="btn btn-outline-primary">Submit</button>
+
+{% endblock %}

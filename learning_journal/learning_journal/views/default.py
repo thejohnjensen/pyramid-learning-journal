@@ -1,27 +1,31 @@
-from pyramid.response import Response
-import os
-
-HERE = os.path.abspath(__file__)
-TEMPLATES = os.path.join(os.path.dirname(os.path.dirname(HERE)), 'templates')
-DATA = os.path.join(os.path.dirname(os.path.dirname(HERE)), 'data')
-
-def list_view(request):
-    """."""
-    with open(os.path.join(TEMPLATES, 'index.html')) as file:
-        return Response(file.read())
+from pyramid.view import view_config
+from pyramid.httpexceptions import HTTPNotFound
+from learning_journal.data.data import journal_dict
 
 
+@view_config(route_name='home',
+             renderer="learning_journal:templates/index.jinja2")
+def list_entry(request):
+    """Function that renders the view of the home page."""
+    return {
+        "journals": journal_dict
+    }
+
+
+@view_config(route_name='detail_view', renderer="learning_journal:templates/details.jinja2")
 def detail_view(request):
-    """."""
-    with open(os.path.join(DATA, 'data.html')) as file:
-        return Response(file.read())
+    """Render the detail view of one journal entry."""
+    journal_id = int(request.matchdict['id'])
+    if journal_id < 0 or journal_id > len(journal_dict):
+        raise HTTPNotFound
+    entry = list(filter(lambda journal_dict: journal_dict['id'] == journal_id, journal_dict))[0]
+    return {
+        'entry': entry
+    }
 
-def create_view(request):
-    """."""
-    with open(os.path.join(TEMPLATES, 'create.html')) as file:
-        return Response(file.read())
 
-def update_view(request):
-    """."""
-    with open(os.path.join(TEMPLATES, 'edit.html')) as file:
-        return Response(file.read())
+@view_config(route_name='new_entry', renderer="learning_journal:templates/create.jinja2")
+def new_entry(request):
+    return {
+        'title': 'Title'
+    }
