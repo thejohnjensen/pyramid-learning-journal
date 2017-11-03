@@ -1,7 +1,7 @@
 import os
 import sys
 import transaction
-from ..data import data
+from learning_journal.data.data import journal_dict
 
 from pyramid.paster import (
     get_appsettings,
@@ -39,14 +39,14 @@ def main(argv=sys.argv):
     Base.metadata.create_all(engine)
 
  # ---- NOTHING BELOW THIS POINT IS NECESSARY UNLESS YOU WANT TO START WITH A NEW MODEL INSTANCE -----
-"""
+
     session_factory = get_session_factory(engine)
 
     with transaction.manager:
         dbsession = get_tm_session(session_factory, transaction.manager)
 
         all_entries = []
-        for entry in data.journal_dict:
+        for entry in journal_dict[::-1]:
             all_entries.append(
                 Journal(
                     id=entry['id'],
@@ -57,5 +57,4 @@ def main(argv=sys.argv):
                 )
 
         # model = MyModel(name='one', value=1)
-        dbsession.add(all_entries)
-"""
+        dbsession.add_all(all_entries)
