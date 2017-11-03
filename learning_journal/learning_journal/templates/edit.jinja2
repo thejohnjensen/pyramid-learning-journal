@@ -3,13 +3,12 @@
 {% block content %}
 <form action="">
   <div>
-        <input type="text" id="title" name="title" placeholder="Title">
+        <input type="text" id="title" name="title" placeholder="{{ entry.title }}">
     </div>
     <div>
-        <textarea type="text" id="content" name="content">
-        </textarea>
+        <textarea type="text" id="content" name="content">{{ entry.body }}</textarea>
     </div>
 </form>  
 
 <button id="submit" class="btn btn-outline-primary">Submit</button>
-{% endblock}
+{% endblock %}
