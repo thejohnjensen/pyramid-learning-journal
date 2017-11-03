@@ -72,3 +72,7 @@ def update(request):
         request.dbsession.add(entry)
         request.dbsession.flush()
         return HTTPFound(request.route_url('detail_view', id=entry.id))
+
+
+@view_config(route_name='update',
+             renderer="learning_journal:templates/edit.jinja2")
