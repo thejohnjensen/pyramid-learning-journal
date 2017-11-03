@@ -32,3 +32,16 @@ def new_entry(request):
     return {
         'title': 'Title'
     }
+
+
+@view_config(route_name='update',
+             renderer="learning_journal:templates/edit.jinja2")
+def update_entry(request):
+    """Render the edit view of one journal entry."""
+    journal_id = int(request.matchdict['id'])
+    if journal_id < 0 or journal_id > len(journal_dict):
+        raise HTTPNotFound
+    entry = list(filter(lambda journal_dict: journal_dict['id'] == journal_id, journal_dict))[0]
+    return {
+        'entry': entry
+    }
