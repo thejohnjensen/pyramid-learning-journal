@@ -2,6 +2,9 @@
 
 Personal learning journal using bootstrap css and some basic bootstrap blog html.
 
+This site is deployed to Heroku at:
+https://creepy-barrow-47862.herokuapp.com/
+
 **Uses the following routes:**
 `    config.add_route('home', '/')`
 `    config.add_route('detail_view', '/journal/{id:\d+}')`
