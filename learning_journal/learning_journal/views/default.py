@@ -3,14 +3,14 @@
 from pyramid.view import view_config
 from datetime import datetime
 from pyramid.httpexceptions import HTTPNotFound, HTTPBadRequest, HTTPFound
-# from learning_journal.data.data import journal_dict
+from learning_journal.data.data import journal_dict
 from learning_journal.models import Journal
 
 
 @view_config(route_name='home',
              renderer="learning_journal:templates/index.jinja2")
 def list_entry(request):
-    """."""
+    """Render a list of all entries to home page."""
     entries = request.dbsession.query(Journal).all()
     entries = [entry.to_dict() for entry in entries]
     return {
@@ -21,7 +21,7 @@ def list_entry(request):
 @view_config(route_name='detail_view',
              renderer="learning_journal:templates/details.jinja2")
 def detail_view(request):
-    """."""
+    """Render a detailed view of the entry clicked on."""
     journal_id = int(request.matchdict['id'])
     entry = request.dbsession.query(Journal).get(journal_id)
     return {
@@ -33,7 +33,7 @@ def detail_view(request):
 @view_config(route_name='new_entry',
              renderer="learning_journal:templates/create.jinja2")
 def new_entry(request):
-    """."""
+    """Can add a new entry and it adds it the database."""
     if request.method == 'GET':
         return {}
 
@@ -54,7 +54,7 @@ def new_entry(request):
 @view_config(route_name='update',
              renderer="learning_journal:templates/edit.jinja2")
 def update(request):
-    """."""
+    """Update journal entry and persist the data."""
     journal_id = int(request.matchdict['id'])
     entry = request.dbsession.query(Journal).get(journal_id)
     if not entry:
@@ -72,7 +72,3 @@ def update(request):
         request.dbsession.add(entry)
         request.dbsession.flush()
         return HTTPFound(request.route_url('detail_view', id=entry.id))
-
-
-@view_config(route_name='update',
-             renderer="learning_journal:templates/edit.jinja2")

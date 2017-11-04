@@ -6,7 +6,7 @@ from learning_journal.data.data import journal_dict
 from pyramid.paster import (
     get_appsettings,
     setup_logging,
-    )
+)
 
 from pyramid.scripts.common import parse_vars
 
@@ -15,7 +15,7 @@ from ..models import (
     get_engine,
     get_session_factory,
     get_tm_session,
-    )
+)
 from ..models import Journal
 from datetime import datetime
 
@@ -34,7 +34,7 @@ def main(argv=sys.argv):
     options = parse_vars(argv[2:])
     setup_logging(config_uri)
     settings = get_appsettings(config_uri, options=options)
-
+    settings['sqlalchemy.url'] = os.environ["DATABASE_URL"]
     engine = get_engine(settings)
     Base.metadata.create_all(engine)
 
@@ -53,8 +53,8 @@ def main(argv=sys.argv):
                     title=entry['title'],
                     date=entry['date'],
                     body=entry['body']
-                    )
                 )
+            )
 
         # model = MyModel(name='one', value=1)
         dbsession.add_all(all_entries)

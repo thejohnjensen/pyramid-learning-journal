@@ -7,10 +7,10 @@
     <meta name="author" content="">
     <title>Learning Journal</title>
     <!-- Bootstrap core CSS -->
-    <link href="../../static/blog.css" rel="stylesheet"> 
-    <link href="../../static/bootstrap.css" rel="stylesheet"> 
+    <link href="{{ request.static_path('learning_journal:static/blog.css') }}" rel="stylesheet"> 
+    <link href="{{ request.static_path('learning_journal:static/bootstrap.css') }}" rel="stylesheet"> 
     <!-- Custom styles for this template -->
-    <link href="../../static/style.css" rel="stylesheet">
+    <link href="{{ request.static_path('learning_journal:static/style.css') }}" rel="stylesheet">
   </head>
 
   <body>
@@ -21,8 +21,6 @@
           <nav class="nav">
             <a class="nav-link active" id='home' href="{{ request.route_url('home')}}">Home</a>
             <a class="nav-link" id="new-entry" href="{{ request.route_url('new_entry')}}">New Journal Entry</a>
-            <!-- <a class="nav-link active" href="">Edit</a> -->
-            <!-- <a class="nav-link" href="">Details</a> -->
           </nav>
         </div>
       </div>

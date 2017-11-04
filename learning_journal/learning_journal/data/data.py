@@ -1,19 +1,18 @@
-# from pyramid.view import view_config
 from datetime import datetime
-# from pyramid.httpexceptions import HTTPNotFound
+
 
 
 FMT = '%m/%d/%Y'
 journal_dict = [
     {
         'id': 13,
-        'title': 'Class 13',
+        'title': 'Class: 13',
         'date': datetime.strptime('11/1/2017', FMT).date(),
         'body': 'I finally got my jinja templates to display properly. Seriously needed to map out the path of the name to route to function to data in order to figure it out. Starting to connect to sql...my brains not ready for this. Real firehose type of a day.'
     },
     {
         'id': 12,
-        'title': 'Class 12',
+        'title': 'Class: 12',
         'date': datetime.strptime('10/31/2017', FMT).date(),
         'body': 'Today we added another data structure to our knowledge - binary heap. \
         We eventual got it and the tests passing but I don\'t think our \
@@ -24,7 +23,7 @@ journal_dict = [
     },
     {
         'id': 11,
-        'title': 'Class 11',
+        'title': 'Class: 11',
         'date': datetime.strptime('10/30/2017', FMT).date(),
         'body': 'Today I am learning pyramid! Like right now, as I type. I now have a better understanding of how pyramid takes a request from the routes module, uses the config module to connect that route with the function in the default.py view folder. This is thanks to my paired programming partner Adrienne, she explained it to me.'
     },
