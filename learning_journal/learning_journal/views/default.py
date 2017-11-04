@@ -7,26 +7,15 @@ from learning_journal.data.data import journal_dict
 from learning_journal.models import Journal
 
 
-test_entries = [{
-    'title': 'Test',
-    'date': 'who cares',
-    'body': 'whatev'
-
-}]
-
-
 @view_config(route_name='home',
              renderer="learning_journal:templates/index.jinja2")
 def list_entry(request):
     """Render a list of all entries to home page."""
+    entries = request.dbsession.query(Journal).all()
+    entries = [entry.to_dict() for entry in entries]
     return {
-        'journals': test_entries
+        "journals": entries
     }
-    # entries = request.dbsession.query(Journal).all()
-    # entries = [entry.to_dict() for entry in entries]
-    # return {
-    #     "journals": entries
-    # }
 
 
 @view_config(route_name='detail_view',
