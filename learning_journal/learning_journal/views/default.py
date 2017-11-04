@@ -72,3 +72,4 @@ def update(request):
         request.dbsession.add(entry)
         request.dbsession.flush()
         return HTTPFound(request.route_url('detail_view', id=entry.id))
+

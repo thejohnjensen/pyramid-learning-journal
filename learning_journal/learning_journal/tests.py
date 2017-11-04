@@ -34,7 +34,6 @@ def db_session(configuration, request):
     def teardown():
         session.transaction.rollback()
         Base.metadata.drop_all(engine)
-
     request.addfinalizer(teardown)
     return session
 
@@ -130,3 +129,4 @@ def test_update_entry(dummy_request):
     entry = dummy_request.dbsession.query(Journal).all()
     journal_len = len(entry) - 1
     assert entry[journal_len].title == "Updated, Ehh!?"
+

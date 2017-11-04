@@ -1,6 +1,5 @@
-# from pyramid.view import view_config
 from datetime import datetime
-# from pyramid.httpexceptions import HTTPNotFound
+
 
 
 FMT = '%m/%d/%Y'
