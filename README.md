@@ -37,7 +37,23 @@ The webpage is deployed to heroku at https://creepy-barrow-47862.herokuapp.com/
 
 
 **STEP 2:**
-
+---------- coverage: platform darwin, python 3.6.3-final-0 -----------
+Name                                       Stmts   Miss  Cover
+--------------------------------------------------------------
+learning_journal/__init__.py                   8      6    25%
+learning_journal/data/__init__.py              0      0   100%
+learning_journal/data/data.py                  3      0   100%
+learning_journal/models/__init__.py           24     14    42%
+learning_journal/models/meta.py                5      0   100%
+learning_journal/models/mymodel.py             8      0   100%
+learning_journal/routes.py                     6      5    17%
+learning_journal/scripts/__init__.py           0      0   100%
+learning_journal/scripts/initializedb.py      26     16    38%
+learning_journal/views/__init__.py             0      0   100%
+learning_journal/views/default.py             19      5    74%
+learning_journal/views/notfound.py             4      2    50%
+--------------------------------------------------------------
+TOTAL                                        103     48    53%
 
 **STEP 3:**
 
