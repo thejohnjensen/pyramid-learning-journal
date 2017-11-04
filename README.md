@@ -33,6 +33,16 @@ The webpage is deployed to heroku at https://creepy-barrow-47862.herokuapp.com/
     `env/bin/pserve development.ini`
 
 
+**STEP 1:**
+
+
+**STEP 2:**
+
+
+**STEP 3:**
+
+
+**STEP 4:**
 Test Coverage:
 ---------- coverage: platform darwin, python 3.6.3-final-0 -----------
 Name                                       Stmts   Miss  Cover
