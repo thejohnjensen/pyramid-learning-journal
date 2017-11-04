@@ -1,14 +1,16 @@
 {% extends "layout.jinja2" %}
 
 {% block content %}
-<form action="">
+<form method="POST">
   <div>
-        <input type="text" id="title" name="title" placeholder="{{ entry.title }}">
+        <input type="text" id="title" name="title" value="{{ entry.title }}">
     </div>
     <div>
-        <textarea type="text" id="content" name="content">{{ entry.body }}</textarea>
+        <textarea type="text" id="content" name="content" style='width:700px'>{{ entry.body }}
+        </textarea>
     </div>
+<button id="submit" class="btn btn-outline-primary">Submit</button>
 </form>  
 
-<button id="submit" class="btn btn-outline-primary">Submit</button>
+
 {% endblock %}

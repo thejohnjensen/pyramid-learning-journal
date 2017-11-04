@@ -5,7 +5,7 @@
         <div class="blog-post">
             <h2><a href="{{ request.route_url('detail_view', id=entry.id) }}">{{ entry.title }}</a></h2>
             <p>{{ entry.date }}</p>
-        <button class="btn btn-outline-primary" id="new-entry-button"><a href="{{ request.route_url('update', id=entry.id) }}">Edit</a></button>
+            <p>{{ entry.body }}</p>
         </div>
        {% endfor %}
 

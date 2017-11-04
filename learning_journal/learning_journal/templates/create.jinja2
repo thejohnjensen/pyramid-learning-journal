@@ -2,15 +2,14 @@
 
 {% block content %}
 
-<form action="">
+<form method="POST">
           <div>
-            <input type="text" id="title" name="title" placeholder="{{ title }}">
+            <input type="text" id="title" name="title" placeholder="Title">
           </div>
           <div>
-            <textarea type="text" id="content" name="content">
-            </textarea>
+            <textarea type="text" id="content" name="content" style='width:700px'></textarea>
           </div>
-        </form>  
-<button id="submit" class="btn btn-outline-primary">Submit</button>
+        <button type="submit" class="btn btn-outline-primary">Submit</button>
+</form>  
 
 {% endblock %}
