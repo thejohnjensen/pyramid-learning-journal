@@ -5,6 +5,18 @@ from datetime import datetime
 FMT = '%m/%d/%Y'
 journal_dict = [
     {
+        'id': 14,
+        'title': 'Class: 15',
+        'date': datetime.strptime('11/3/2017', FMT).date(),
+        'body': 'Today we had a review of pyramid which was very much needed. I feel like i have a much better understanding of it now, starting step 4 I now understand step 2...I think thats how it\'s supposed to be. Also finished up the graph, I want to do some research to see what the best practices are fore implementing it.'
+    },
+    {
+        'id': 14,
+        'title': 'Class: 14',
+        'date': datetime.strptime('11/2/2017', FMT).date(),
+        'body': 'Finished up the priority queue data structure assignment. Ended up using a dictionary which made it much easier than how we tried to build initially with a linked list. Continued working on the pyramid learning journal. Went back and watched some of the previous videos and its crazy how much more sense it makes once I\'ve tried to code it and broke it several times. TESTS! How?'
+    },
+    {
         'id': 13,
         'title': 'Class: 13',
         'date': datetime.strptime('11/1/2017', FMT).date(),
