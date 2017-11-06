@@ -12,7 +12,7 @@ from learning_journal.models import Journal
 def list_entry(request):
     """Render a list of all entries to home page."""
     entries = request.dbsession.query(Journal).all()
-    entries = [entry.to_dict() for entry in entries]
+    entries = sorted([entry.to_dict() for entry in entries], key=lambda x: x['id'])
     return {
         "journals": entries
     }
@@ -42,7 +42,6 @@ def new_entry(request):
             return HTTPBadRequest
         now = datetime.now()
         new_entry = Journal(
-            id=request.dbsession.query(Journal).all()[len(request.dbsession.query(Journal).all()) - 1].id + 1,
             title=request.POST['title'],
             date=now.strftime("%B %d, %Y"),
             body=request.POST['content']

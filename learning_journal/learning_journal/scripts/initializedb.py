@@ -49,12 +49,10 @@ def main(argv=sys.argv):
         for entry in journal_dict[::-1]:
             all_entries.append(
                 Journal(
-                    id=entry['id'],
                     title=entry['title'],
                     date=entry['date'],
                     body=entry['body']
                 )
             )
 
-        # model = MyModel(name='one', value=1)
         dbsession.add_all(all_entries)
