@@ -42,17 +42,17 @@ def main(argv=sys.argv):
 
     session_factory = get_session_factory(engine)
 
-    with transaction.manager:
-        dbsession = get_tm_session(session_factory, transaction.manager)
+    # with transaction.manager:
+    #     dbsession = get_tm_session(session_factory, transaction.manager)
 
-        all_entries = []
-        for entry in journal_dict[::-1]:
-            all_entries.append(
-                Journal(
-                    title=entry['title'],
-                    date=entry['date'],
-                    body=entry['body']
-                )
-            )
+    #     all_entries = []
+    #     for entry in journal_dict[::-1]:
+    #         all_entries.append(
+    #             Journal(
+    #                 title=entry['title'],
+    #                 date=entry['date'],
+    #                 body=entry['body']
+    #             )
+    #         )
 
-        dbsession.add_all(all_entries)
+    #     dbsession.add_all(all_entries)
