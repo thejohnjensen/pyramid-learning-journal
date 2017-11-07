@@ -12,7 +12,7 @@ from learning_journal.models import Journal
 def list_entry(request):
     """Render a list of all entries to home page."""
     entries = request.dbsession.query(Journal).all()
-    entries = sorted([entry.to_dict() for entry in entries], key=lambda x: x['id'])
+    entries = sorted([entry.to_dict() for entry in entries], key=lambda x: x['id'], reverse=True)
     return {
         "journals": entries
     }
