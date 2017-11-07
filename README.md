@@ -1,43 +1,68 @@
 # pyramid-learning-journal
 
-Personal learning journal using bootstrap css and some basic bootstrap blog html.
-The webpage is deployed to heroku at https://creepy-barrow-47862.herokuapp.com/
+**Authors:** John Jensen and [Adrienne Karnoski](https://github.com/adriennekarnoski)
+
+**Deployed At:** https://creepy-barrow-47862.herokuapp.com/
+
+Personal learning journal blog built on [pyramid](https://docs.pylonsproject.org/projects/pyramid/en/latest/#) web framework and [cookiecutter-alchemy](https://github.com/Pylons/pyramid-cookiecutter-alchemy) template. Using bootstrap template css.
 
 **Uses the following routes:**
-`    config.add_route('home', '/')`
-`    config.add_route('detail_view', '/journal/{id:\d+}')`
-`    config.add_route('new_entry', '/journal/new_entry')`
-`    config.add_route('update', '/journal/{id:\d+}/update')`
+
+| Route | Route Name | Description |
+| --- | --- | --- |
+| `/` | home | shows a list view of all my journal entries |
+| `/journal/new_entry` |  new_entry | create a new journal entry |
+| `/journal/{id:\d+}` | detail_view | show the full details of an entry |
+| `/journal/{id:\d+}/update` | update | edit the selected entry |
 
 
 **Getting Started**
+- Clone the repo: copy the link from this repo.
+    `$ git clone <link>`
+
 - Change directory into your newly created project.
-    `cd learning_journal`
+    `$ cd pyramid_learning_journal`
 
 - Create a Python virtual environment.
-    `python3 -m venv env`
+    `$ python3 -m venv env`
+
+- Change directory into `learning_journal`
 
 - Upgrade packaging tools.
-    `env/bin/pip install --upgrade pip setuptools`
+    `learning_journal $ pip install --upgrade pip setuptools`
 
 - Install the project in editable mode with its testing requirements.
-    `env/bin/pip install -e ".[testing]"`
+    `learning_journal $ pip install -e ".[testing]"`
+
+- Create a database with [postgresSQL](https://www.postgresql.org/).
+    `$ createdb learning_journal`
 
 - Configure the database.
-    `env/bin/initialize_learning_journal_db development.ini`
+    `learning_journal $ initialize_db development.ini`
 
 - Run your project's tests.
-    `env/bin/pytest`
+    `learning_journal $ pytest`
 
 - Run your project.
-    `env/bin/pserve development.ini`
+    `$ pserve development.ini`
+
+
+#Testing Plan
+
+* Test each of the view functions:
+    * Test that list_entry returns the list of journal entries.
+    * Test that list_entry returns the data I inteded for.
+    * Test that detail view shows the details for the correct journal entry.
+    * Test that creating a new entry creates the entry intended and persists the data in database.
+    * Test getting an entry, edit it, and commit it to the database.
+
 
 
 **STEP 1:**
----------- coverage: platform darwin, python 3.6.3-final-0 -----------
-Name                                       Stmts   Miss  Cover
---------------------------------------------------------------
-learning_journal/__init__.py                   9      7    22%
+
+| Name |                                       Stmts |  Miss | Cover |
+| --- | --- | --- | --- |
+| learning_journal/__init__.py        |           9   |   7  |  22%
 learning_journal/models/__init__.py           24     14    42%
 learning_journal/models/meta.py                5      0   100%
 learning_journal/models/mymodel.py             8      0   100%
