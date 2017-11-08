@@ -79,14 +79,15 @@ def update(request):
 @view_config(route_name='login',
              renderer='learning_journal:templates/login.jinja2')
 def login(request):
-    """."""
+    """Take in the request from login page. If the method is POST then call
+        is_authenticated function to verify username and password. If that
+        returns True then the user is logged in, else just stay on the page."""
     if request.method == "GET":
         return {}
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
         if is_authenticated(username, password):
-            print('im authentic!')
             headers = remember(request, username)
             return HTTPFound(request.route_url('home'), headers=headers)
         else:
