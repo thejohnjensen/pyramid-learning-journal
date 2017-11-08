@@ -20,7 +20,14 @@
         <div class="container">
           <nav class="nav">
             <a class="nav-link active" id='home' href="{{ request.route_url('home')}}">Home</a>
+            {% if request.authenticated_userid %}
             <a class="nav-link" id="new-entry" href="{{ request.route_url('new_entry')}}">New Journal Entry</a>
+            {% endif %}
+            {% if request.authenticated_userid %}
+            <a class="nav-link" id="logout" href="{{ request.route_url('logout')}}">Logout</a>
+            {% else %}
+            <a class="nav-link" id="login" href="{{ request.route_url('login')}}">Login</a>
+            {% endif %}
           </nav>
         </div>
       </div>

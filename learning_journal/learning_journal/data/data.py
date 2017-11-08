@@ -5,6 +5,16 @@ from datetime import datetime
 FMT = '%m/%d/%Y'
 journal_dict = [
     {
+        'title': 'Class: 17',
+        'date': datetime.strptime('11/7/2017', FMT).date(),
+        'body': 'Continued working with our learning journals, time to add some security features! Was pretty interesting to see how simple it can be to add a login in page and secure a password with hash encryption. I still don\'t really get the idea of hashing your password because if someone is just trying random combinations on the log in page it will not help you. Also worked on graph traversal, got the depth first traversal with a recursive function, was pretty happy with that.'
+     },
+    {
+        'title': 'Class: 16',
+        'date': datetime.strptime('11/6/2017', FMT).date(),
+        'body': 'Back at it, never felt like there was a weekend since I spent it here. I was pretty much caught up on my work so today was just a review day and resubmit for some of my http server assignments. Had a good code review this morning and I got some good notes on *args usage. Also going over pushing to heroku was much appreciated.'
+    },
+    {
         'title': 'Class: 15',
         'date': datetime.strptime('11/3/2017', FMT).date(),
         'body': 'Today we had a review of pyramid which was very much needed. I feel like i have a much better understanding of it now, starting step 4 I now understand step 2...I think thats how it\'s supposed to be. Also finished up the graph, I want to do some research to see what the best practices are fore implementing it.'

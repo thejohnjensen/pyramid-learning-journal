@@ -1,10 +1,11 @@
-"""."""
+"""Configure how the views are handled."""
 
 from pyramid.view import view_config
 from datetime import datetime
 from pyramid.httpexceptions import HTTPNotFound, HTTPBadRequest, HTTPFound
-from learning_journal.data.data import journal_dict
+from pyramid.security import remember, forget
 from learning_journal.models import Journal
+from learning_journal.security import is_authenticated
 
 
 @view_config(route_name='home',
@@ -31,7 +32,8 @@ def detail_view(request):
 
 
 @view_config(route_name='new_entry',
-             renderer="learning_journal:templates/create.jinja2")
+             renderer="learning_journal:templates/create.jinja2",
+             permission='secret')
 def new_entry(request):
     """Can add a new entry and it adds it the database."""
     if request.method == 'GET':
@@ -51,7 +53,8 @@ def new_entry(request):
 
 
 @view_config(route_name='update',
-             renderer="learning_journal:templates/edit.jinja2")
+             renderer="learning_journal:templates/edit.jinja2",
+             permission='secret')
 def update(request):
     """Update journal entry and persist the data."""
     journal_id = int(request.matchdict['id'])
@@ -71,3 +74,27 @@ def update(request):
         request.dbsession.add(entry)
         request.dbsession.flush()
         return HTTPFound(request.route_url('detail_view', id=entry.id))
+
+
+@view_config(route_name='login',
+             renderer='learning_journal:templates/login.jinja2')
+def login(request):
+    """."""
+    if request.method == "GET":
+        return {}
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        if is_authenticated(username, password):
+            print('im authentic!')
+            headers = remember(request, username)
+            return HTTPFound(request.route_url('home'), headers=headers)
+        else:
+            return {}
+
+
+@view_config(route_name='logout')
+def logout(request):
+    """."""
+    headers = forget(request)
+    return HTTPFound(request.route_url('home'), headers=headers)
