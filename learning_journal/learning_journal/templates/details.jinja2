@@ -7,7 +7,9 @@
             <h2>{{ entry.title }}</h2>
             <p>{{ entry.date }}</p>
             <p>{{ entry.body }}</p>
-        <button class="btn btn-outline-primary" id="edit"><a href="{{ request.route_url('update', id=entry.id) }}">Edit Entry</a></button>
+            {% if request.authenticated_userid %}
+            <button class="btn btn-outline-primary" id="edit"><a href="{{ request.route_url('update', id=entry.id) }}">Edit Entry</a></button>
+            {% endif %}
         </div>
 </div>
 
