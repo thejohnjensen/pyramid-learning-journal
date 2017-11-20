@@ -2,8 +2,8 @@
 
 {% block content %}
 <form method="POST">
+    <div>
     <input type="hidden" name="csrf_token" value=" {{ request.session.get_csrf_token() }}" /> 
-  <div>
         <input type="text" id="title" name="title" value="{{ entry.title }}">
     </div>
     <div>
