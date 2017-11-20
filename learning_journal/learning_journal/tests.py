@@ -1,4 +1,4 @@
-"""."""
+"""Testing module for pyramid learning journal."""
 from pyramid import testing
 from learning_journal.models import Journal
 from learning_journal.models.meta import Base
@@ -54,7 +54,7 @@ def test_list_view_returns_list(dummy_request):
 def test_list_view_returns_my_data(dummy_request):
     """Test that my data is coming back."""
     from learning_journal.views.default import list_entry
-    for entry in journal_dict[::-1]:
+    for entry in journal_dict:
         new_entry = Journal(
             title=entry['title'],
             date=entry['date'],
@@ -118,7 +118,7 @@ def test_update_entry(dummy_request):
         )
         dummy_request.dbsession.add(create_entry)
         dummy_request.dbsession.commit()
-    dummy_request.matchdict['id'] = 1
+    dummy_request.matchdict['id'] = 17
     new_info = {
         "title": "Updated, Ehh!?",
         "content": "Hellz yeah!"
@@ -129,4 +129,5 @@ def test_update_entry(dummy_request):
     entry = dummy_request.dbsession.query(Journal).all()
     journal_len = len(entry) - 1
     assert entry[journal_len].title == "Updated, Ehh!?"
+
 
