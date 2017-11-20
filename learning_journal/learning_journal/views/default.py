@@ -33,7 +33,8 @@ def detail_view(request):
 
 @view_config(route_name='new_entry',
              renderer="learning_journal:templates/create.jinja2",
-             permission='secret')
+             permission='secret',
+             require_csrf=False)
 def new_entry(request):
     """Can add a new entry and it adds it the database."""
     if request.method == 'GET':
@@ -54,11 +55,13 @@ def new_entry(request):
 
 @view_config(route_name='update',
              renderer="learning_journal:templates/edit.jinja2",
-             permission='secret')
+             permission='secret',
+             require_csrf=True)
 def update(request):
     """Update journal entry and persist the data."""
     journal_id = int(request.matchdict['id'])
     entry = request.dbsession.query(Journal).get(journal_id)
+    import pdb; pdb.set_trace()
     if not entry:
         raise HTTPFound
 
@@ -73,11 +76,13 @@ def update(request):
         entry.body = request.POST['content']
         request.dbsession.add(entry)
         request.dbsession.flush()
+        csrf_token = 'asdfadsf'
         return HTTPFound(request.route_url('detail_view', id=entry.id))
 
 
 @view_config(route_name='login',
-             renderer='learning_journal:templates/login.jinja2')
+             renderer='learning_journal:templates/login.jinja2',
+             require_csrf=False)
 def login(request):
     """Take in the request from login page. If the method is POST then call
         is_authenticated function to verify username and password. If that
@@ -85,6 +90,8 @@ def login(request):
     if request.method == "GET":
         return {}
     if request.method == "POST":
+        # response = request.get('/login')
+        # csrf_token = response.html.find('input', {'name: csrf_token'}).attrs['value']
         username = request.POST['username']
         password = request.POST['password']
         if is_authenticated(username, password):

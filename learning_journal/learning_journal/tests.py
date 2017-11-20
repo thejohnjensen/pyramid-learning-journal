@@ -130,5 +130,4 @@ def test_update_entry(dummy_request):
     journal_len = len(entry) - 1
     assert entry[journal_len].title == "Updated, Ehh!?"
 
-# TODO  add tests with user authentication
 
