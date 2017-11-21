@@ -34,7 +34,7 @@ def detail_view(request):
 @view_config(route_name='new_entry',
              renderer="learning_journal:templates/create.jinja2",
              permission='secret',
-             require_csrf=False)
+             require_csrf=True)
 def new_entry(request):
     """Can add a new entry and it adds it the database."""
     if request.method == 'GET':
@@ -61,7 +61,6 @@ def update(request):
     """Update journal entry and persist the data."""
     journal_id = int(request.matchdict['id'])
     entry = request.dbsession.query(Journal).get(journal_id)
-    import pdb; pdb.set_trace()
     if not entry:
         raise HTTPFound
 
@@ -76,7 +75,6 @@ def update(request):
         entry.body = request.POST['content']
         request.dbsession.add(entry)
         request.dbsession.flush()
-        csrf_token = 'asdfadsf'
         return HTTPFound(request.route_url('detail_view', id=entry.id))
 
 
@@ -90,8 +88,6 @@ def login(request):
     if request.method == "GET":
         return {}
     if request.method == "POST":
-        # response = request.get('/login')
-        # csrf_token = response.html.find('input', {'name: csrf_token'}).attrs['value']
         username = request.POST['username']
         password = request.POST['password']
         if is_authenticated(username, password):
