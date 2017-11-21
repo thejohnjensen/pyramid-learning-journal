@@ -3,7 +3,7 @@
 {% block content %}
 
 <form method="POST">
-    <input type="hidden" name="csrf_token" value=" {{ request.session.get_csrf_token() }}" /> 
+    <input type="hidden" name="csrf_token" value="{{ request.session.get_csrf_token() }}" /> 
           <div>
             <input type="text" id="title" name="title" placeholder="Title">
           </div>

@@ -6,7 +6,6 @@ from pyramid.httpexceptions import HTTPNotFound, HTTPBadRequest, HTTPFound
 from pyramid.security import remember, forget
 from learning_journal.models import Journal
 from learning_journal.security import is_authenticated
-from pyramid.session import check_csrf_token
 
 
 @view_config(route_name='home',
@@ -34,16 +33,14 @@ def detail_view(request):
 
 @view_config(route_name='new_entry',
              renderer="learning_journal:templates/create.jinja2",
-             require_csrf=False)
+             permission='secret',
+             require_csrf=True)
 def new_entry(request):
     """Can add a new entry and it adds it the database."""
-    print('am i in post?')
-    # check_csrf_token(request)
     if request.method == 'GET':
         return {}
 
     if request.method == 'POST':
-        import pdb; pdb.set_trace()
         if not all([field in request.POST for field in ['title', 'content']]):
             return HTTPBadRequest
         now = datetime.now()
@@ -58,7 +55,8 @@ def new_entry(request):
 
 @view_config(route_name='update',
              renderer="learning_journal:templates/edit.jinja2",
-             permission='secret')
+             permission='secret',
+             require_csrf=True)
 def update(request):
     """Update journal entry and persist the data."""
     journal_id = int(request.matchdict['id'])
