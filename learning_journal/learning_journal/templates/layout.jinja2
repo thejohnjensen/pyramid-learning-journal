@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Learning Journal</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{{ request.static_path('learning_journal:static/blog.css') }}" rel="stylesheet"> 
+    <link href="{{ request.static_path('learning_journal:static/bootstrap.css') }}" rel="stylesheet"> 
+    <!-- Custom styles for this template -->
+    <link href="{{ request.static_path('learning_journal:static/style.css') }}" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <header>
+      <div class="blog-masthead">
+        <div class="container">
+          <nav class="nav">
+            <a class="nav-link active" id='home' href="{{ request.route_url('home')}}">Home</a>
+            {% if request.authenticated_userid %}
+            <a class="nav-link" id="new-entry" href="{{ request.route_url('new_entry')}}">New Journal Entry</a>
+            {% endif %}
+            {% if request.authenticated_userid %}
+            <a class="nav-link" id="logout" href="{{ request.route_url('logout')}}">Logout</a>
+            {% else %}
+            <a class="nav-link" id="login" href="{{ request.route_url('login')}}">Login</a>
+            {% endif %}
+          </nav>
+        </div>
+      </div>
+
+      <div class="blog-header">
+        <div class="container">
+          <h1 class="blog-title">Learning Journal Entry</h1>
+          <p class="lead blog-description">John's learning journal for 401.</p>
+        </div>
+      </div>
+    </header>
+
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main" id="main-content">
+          
+          {% block content %}{% endblock %}
+        
+          
+        </div><!--/.blog-main-->
+      </div><!-- /.row -->
+    </main><!-- /.container -->
+
+    <footer class="blog-footer">
+      <p>Learning Journal</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+
+
+<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script> -->
+    <!-- <script src="./app.js"></script> -->
+  </body>
+</html>
